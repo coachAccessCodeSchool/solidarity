@@ -6,7 +6,7 @@ services:
 
     mysql:
       image: mysql:8
-      container_name: db
+      container_name: db_solidarity
       volumes:
         - .:/application
       environment:

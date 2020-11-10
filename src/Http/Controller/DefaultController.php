@@ -19,4 +19,12 @@ class DefaultController extends AbstractController
         return new Response("ok");
     }
 
+    /**
+     * @Route("/", name="home")
+     */
+    public function home()
+    {
+        return new Response("home");
+    }
+
 }
