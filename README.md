@@ -20,7 +20,7 @@ Requirements: Docker
 
 Open other terminal:
 
-`docker-compose exec php bin/bash`
+`docker-compose exec php fish`
 
 `cd application`
 
@@ -29,6 +29,11 @@ Open other terminal:
 `php bin/console make:migration`
 
 `php bin/console doctrine:migrations:migrate`
+
+`yarn install`
+
+`yarn encore dev --watch`
+
 
 Go `http://127.0.0.1:8080`
 
