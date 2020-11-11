@@ -1,8 +1,27 @@
-FROM phpdockerio/php74-fpm:latest
+FROM php:7.4-fpm
 
-RUN apt-get update \
-    && apt-get -y --no-install-recommends install libzip-dev g++ gnupg php-gnupg mcrypt php7.4-mysql php-redis php7.4-bcmath php7.4-gd php-imagick php7.4-intl php-yaml \
-    && apt-get clean; rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
+RUN apt-get update && apt-get install -y \
+      wget \
+      git \
+      fish
+
+RUN apt-get update && apt-get install -y libzip-dev libicu-dev -y gnupg2 && docker-php-ext-install pdo zip intl opcache
+
+# Imagick
+#RUN apt-get update && apt-get install -y libmagickwand-dev --no-install-recommends && pecl install imagick && docker-php-ext-enable imagick
 
 # Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ --filename=composer
+
+# Symfony tool
+RUN wget https://get.symfony.com/cli/installer -O - | bash && \
+    mv /root/.symfony/bin/symfony /usr/local/bin/symfony
+
+# Yarn
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+RUN apt-get update && apt-get install -y yarn
+
+#curl -sL https://deb.nodesource.com/setup_14.x | -E bash -
+#apt-get install -y nodejs && \
+#apt-get install -y build-essential
