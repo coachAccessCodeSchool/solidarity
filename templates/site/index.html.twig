@@ -1,13 +1,20 @@
 {% extends 'base.html.twig' %}{% block title 'Index' %}
 {% block body %}
     <div class="jumbotron text-center">
-        <h1>Hello, world!</h1>
+        <h1>Acheter en direct des producteurs, tout le monde s’y retrouve.</h1>
     </div>
-
     <div class="mt-5">
         <div class="container col-md-6">
-            <div class="card card-body shadow-lg">
-                knzndkndz
+           {#
+            {% for merchant in merchants %}
+            <div class="card card-body">
+                <h4>{{ merchant.name }}</h4>
+                <p>{{ merchant.information }}</p>
+            </div>
+            {% endfor %}
+           #}
+            <div class="card card-body">
+                Mettre des tags [Fruits, Légumes, Produits sucrées...]
             </div>
         </div>
     </div>

@@ -30,4 +30,18 @@ body {
 
 .card{
     border: none;
+    border-radius: 10px;
+    box-shadow: 0 5px 90px 0 rgba(110, 123, 131, 0.05);
+}
+
+.card.card-body.shadow-lg {
+    font-family: "Raleway", sans-serif;
+    color: #124265;
+    transition: ease-in-out 0.3s;
+}
+
+.card.card-body.shadow-lg{
+    line-height: 24px;
+    font-size: 14px;
+    margin-bottom: 0;
 }
