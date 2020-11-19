@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}{% block title 'Projet Solidaire' %}
+{% block body %}
+    <div class="recipe">
+        <div class="recipe_img">
+            <h1><strong>{{ recipe.name }}</strong></h1>
+            {% if recipe is not null %}
+                <img src="{{ vich_uploader_asset(recipe, 'imageFile') }}" alt="recipe">
+            {% endif %}
+        </div>
+        <div class="content">
+            {{ recipe.recipe }}
+        </div>
+    </div>
+{% endblock %}

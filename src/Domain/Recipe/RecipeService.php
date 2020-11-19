@@ -4,6 +4,7 @@
 namespace App\Domain\Recipe;
 
 
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 
 class RecipeService
@@ -17,6 +18,7 @@ class RecipeService
 
     public function create($recipe)
     {
+        $recipe->setUpdatedAt(new DateTime());
         $this->entityManager->persist($recipe);
         $this->entityManager->flush();
     }

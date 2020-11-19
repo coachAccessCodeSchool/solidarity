@@ -4,13 +4,19 @@
 namespace App\Domain\Recipe;
 
 use App\Domain\Ingredient\Ingredient;
+use DateTime;
+use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass="App\Domain\Recipe\RecipeRepository")
+ * @Vich\Uploadable()
  */
 class Recipe
 {
@@ -20,6 +26,19 @@ class Recipe
      * @ORM\Column(type="integer")
      */
     private ?int $id = null;
+
+    /**
+     * @var string|null
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private ?string $filename = null;
+
+    /**
+     * @var File|null
+     * @Vich\UploadableField(mapping="products_img", fileNameProperty="filename")
+     * @Assert\File(mimeTypes = {"image/jpeg", "image/png"}, maxSize="2M")
+     */
+    private ?File $imageFile = null;
 
     /**
      * @ORM\Column(type="string")
@@ -76,6 +95,11 @@ class Recipe
     }
 
     /**
+     * @ORM\Column(type="datetime", nullable=false)
+     */
+    private ?DateTimeInterface $updatedAt = null;
+
+    /**
      * @var Ingredient[]|Collection
      * @ORM\ManyToMany(targetEntity="App\Domain\Ingredient\Ingredient", cascade={"persist"})
      * @ORM\JoinColumn()
@@ -105,5 +129,42 @@ class Recipe
     public function getIngredients(): Collection
     {
         return $this->ingredients;
+    }
+
+    public function getFilename(): ?string
+    {
+        return $this->filename;
+    }
+
+    public function setFilename(?string $filename): Recipe
+    {
+        $this->filename = $filename;
+        return $this;
+    }
+
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
+
+    public function setImageFile(?File $imageFile): Recipe
+    {
+        $this->imageFile = $imageFile;
+        if ($this->imageFile instanceof UploadedFile) {
+            $this->updatedAt = new DateTime('now');
+        }
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(DateTimeInterface $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
     }
 }

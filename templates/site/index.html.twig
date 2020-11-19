@@ -7,7 +7,10 @@
         <div class="container col-md-6">
             {% for recipes in recipes %}
             <div class="card card-body">
-                <h4>{{ recipes.name }}</h4>
+                {% if recipes is not null %}
+                    <img src="{{ vich_uploader_asset(recipes, 'imageFile') }}" style="width: 260px; height: 160px;">
+                {% endif %}
+                <a href="{{ path('site_show', {slug: recipes.slug}) }}">{{ recipes.name }}</a>
             </div>
             {% endfor %}
         </div>

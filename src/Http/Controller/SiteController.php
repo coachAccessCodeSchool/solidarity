@@ -5,6 +5,7 @@ namespace App\Http\Controller;
 
 
 use App\Domain\Merchant\MerchantRepository;
+use App\Domain\Recipe\Recipe;
 use App\Domain\Recipe\RecipeRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -30,6 +31,16 @@ class SiteController extends AbstractController
     {
         return $this->render('site/index.html.twig', [
             'recipes' => $this->recipeRepository->findAll()
+        ]);
+    }
+
+    /**
+     * @Route("/recipe/{slug}", name="site_show")
+     */
+    public function show(Recipe $recipe)
+    {
+        return $this->render('site/show.html.twig', [
+            'recipe' => $recipe
         ]);
     }
 
