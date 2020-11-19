@@ -1,0 +1,16 @@
+<header class="topbar">
+    <nav>
+        <a href="{{ path('home') }}">Accueil</a>
+        <a href="#">A propos</a>
+        <a href="#">Contact</a>
+    </nav>
+    {#
+    <div class="social">
+        {% if app.user %}
+            <a href="{{ path('login') }}">Se connecter</a>
+        {% else %}
+            <a href="{{ path('register') }}">Créer un compte</a>
+        {% endif %}
+    </div>
+    #}
+</header>

@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}{% block title 'Créer une recette' %}
+{% block body %}
+    <div class="mt-5">
+        <div class="container col-md-6 m-auto">
+            {{ form_start(form) }}
+            {{ form_row(form.name) }}
+            {{ form_row(form.recipe) }}
+                <button type="submit" class="btn btn-primary">Créer la recette</button>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

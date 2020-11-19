@@ -1,0 +1,24 @@
+// Import
+@import "modules/nav";
+
+
+// Variables
+:root {
+  --color: #2C3E50;
+  --background: #fff;
+}
+
+// Page elements
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body, html {
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  color: var(--color);
+  line-height: 1.6;
+  background: var(--background);
+  scroll-margin: 100px 0 0 0;
+}

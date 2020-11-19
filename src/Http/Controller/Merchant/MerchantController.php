@@ -35,9 +35,11 @@ class MerchantController extends AbstractController
         return $this->render('merchant/index.html.twig');
     }
 
+    /*
     /**
-     * @Route("/create", name="create_marchant")
+     * @Route("/recipe/create", name="create_marchant")
      */
+    /*
     public function create(Request $request)
     {
         $merchant = new Merchant();
@@ -50,6 +52,7 @@ class MerchantController extends AbstractController
             'form' => $form->createView()
         ]);
     }
+    */
 
     /**
      * @Route("/info", name="info_merchant")
